@@ -12,12 +12,12 @@
 */
 
 
-Route::get('/test', 'test@splitpay');
+// Route::get('/test', 'test@splitpay');
 
 
-route::get('drag' , function(){
-	return view('drag');
-});
+// route::get('drag' , function(){
+// 	return view('drag');
+// });
 
 
 Route::get('/', function () {
@@ -37,3 +37,7 @@ Route::get('employees/getdata', 'Emp_detail@getdata')->name('employees.getdata')
 Route::post('/autocomplete/fetch', 'Emp_detail@fetch')->name('autocomplete.fetch');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -24,20 +24,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('emp_detail','Emp_detail@index');
+// Route::get('emp_detail','Emp_detail@index');
 
-Route::post('employees/add_employee', 'Emp_detail@add_employee')->name('employees.add_employee');
+// Route::post('employees/add_employee', 'Emp_detail@add_employee')->name('employees.add_employee');
 
-Route::get('employees/getdata', 'Emp_detail@getdata')->name('employees.getdata');
+// Route::get('employees/getdata', 'Emp_detail@getdata')->name('employees.getdata');
 
-Route::post('/autocomplete/fetch', 'Emp_detail@fetch')->name('autocomplete.fetch');
+// Route::post('/autocomplete/fetch', 'Emp_detail@fetch')->name('autocomplete.fetch');
 
 
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');

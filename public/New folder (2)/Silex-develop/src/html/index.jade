@@ -1,0 +1,27 @@
+doctype html
+head
+  block head-start
+
+  style.
+    .loading-pending .silex-workspace {
+      opacity: 0;
+    }
+    body {
+      background-color: #444;
+    }
+
+  block styles
+    // all the css in the head with _styles.less imports
+    link(rel='stylesheet', type='text/css', href='css/admin.css')
+
+  block head-end
+    include ./templates/head.jade
+
+body.loading-pending.advanced-mode-off
+  block body-start
+    include ./templates/body.jade
+
+  block silex-options
+
+  block body-end
+    script(type='text/javascript' src='js/index.js')

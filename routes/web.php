@@ -24,20 +24,37 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Auth::routes();
+Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-// Route::get('emp_detail','Emp_detail@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::post('employees/add_employee', 'Emp_detail@add_employee')->name('employees.add_employee');
+/* Account Controller Routes Start */
 
-// Route::get('employees/getdata', 'Emp_detail@getdata')->name('employees.getdata');
+Route::get('/settings', 'AccountController@settings')->name('settings');
 
-// Route::post('/autocomplete/fetch', 'Emp_detail@fetch')->name('autocomplete.fetch');
+Route::post('/update-profile', 'AccountController@updateProfile')->name('update-profile');
+
+/* Account Controller Routes End */
+
+/* PaymentGateway Controller Routes Start */
+Route::get('/payment-gateways', 'PaymentGatewayController@index')->name('payment-gateways');
 
 
+/* PaymentGateway Controller Routes End */
 
-// Auth::routes();
+/* Customer Controller Routes Start */
+Route::get('/customers', 'CustomerController@index')->name('customers');
 
-// Route::get('/home', 'HomeController@index')->name('home');
+
+/* Customer Controller Routes End */
+
+
+/* Merchant Controller Routes Start */
+Route::get('/merchant-signup', 'MerchantController@signup')->name('signup-merchant');
+
+
+/* Merchant Controller Routes End */
+
+

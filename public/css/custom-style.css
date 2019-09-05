@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400,700,900&display=swap');
+.panel{
+	font-family: 'Nunito Sans', sans-serif;
+}
+.row12{
+	margin-top:10px;
+}
+.search-list {
+    padding-left: 0px;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 10px;
+  }
+ .search-list li {
+    padding: 5px 10px;
+	list-style-type: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    color: #999;
+}
+  .search-list li.active {
+    background-color: #00AAFF;
+    color: #fff;
+  }
+  .panel-title-span{
+	  margin-left:4px;
+  }
+  .panel-title-span>i{
+	  font-size:13px;
+  }
+  .info_span{
+	  padding: 3px 0px;
+	  display: inline-block;
+	  color:#fff;
+  }
+  .chargebtn{
+	  font-family: 'Nunito Sans', sans-serif;
+	  text-transform:uppercase;
+	  font-weight:700;
+	  width:100%;
+	  margin-top:4px;
+	  padding:4px 4px;
+  }
+  .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    color: #ffffff !important;
+    background-color: #00aaff !important;
+  }
+  .cardimg{
+	  width:50px;
+  }
+  .merchant_form_inputs{
+	margin-bottom:12px;
+  }
+  .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+	background-color:#00aaff;
+  }

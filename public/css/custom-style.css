@@ -5,6 +5,16 @@
 .row12{
 	margin-top:10px;
 }
+.panel-body{
+    
+    padding=0px;
+}
+
+.float-right
+{
+    float:right;
+    margin-left:8px;
+}
 .search-list {
     padding-left: 0px;
     border-bottom: 1px solid #eaeaea;
@@ -22,6 +32,11 @@
     background-color: #00AAFF;
     color: #fff;
   }
+  .hdrop{
+      display: inline-block;
+    position: relative;
+  }
+  
   .panel-title-span{
 	  margin-left:4px;
   }

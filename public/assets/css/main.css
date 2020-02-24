@@ -64,7 +64,7 @@ footer {
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  width: 260px;
+  width: 200px;
   height: 100%;
   float: left;
   background-color: #2B333E;
@@ -93,10 +93,45 @@ footer {
     padding-top: 130px; } }
 
 .layout-fullwidth #wrapper .sidebar {
-  left: -260px; }
+  width: 90px; }
+ 
+ .layout-fullwidth #wrapper .sidebar .slimScrollDiv {
+     overflow: unset;
+ }
+ .layout-fullwidth #wrapper .sidebar .slimScrollBar {
+     right: unset !important;
+     left: 1px !important;
+ }
+ .layout-fullwidth #wrapper .sidebar:hover .sidebar-scroll {
+     width: 200px !important;
+ }
+ 
+  .layout-fullwidth #wrapper .sidebar:hover .slimScrollDiv {
+     width: 200px !important;
+ }
+ 
+ 
+  .layout-fullwidth #wrapper .sidebar li  a {
+     width: auto;
+ }
+ .layout-fullwidth #wrapper .sidebar li:hover a {
+     width: 200px;
+     background-color: #252c35;
+    border-left: 5px solid #00AAFF;
+ }
+ 
+.layout-fullwidth #wrapper .sidebar li span {
+  display: none; }
+  
+.layout-fullwidth #wrapper .sidebar li:hover span {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+
 
 .layout-fullwidth #wrapper .main {
-  width: 100%; }
+  width: 93%; }
 
 .layout-fullwidth #wrapper .navbar {
   left: 0 !important; }
@@ -173,7 +208,7 @@ html.fullscreen-bg #wrapper {
     background-color: #f8f8f8; }
   .navbar-default .brand {
     float: left;
-    padding: 30px 39px;
+    padding: 21px 38px;
     background-color: #fff; }
   @media screen and (max-width: 1024px) {
     .navbar-default .brand {
@@ -360,7 +395,7 @@ ul.notifications > li {
 .sidebar {
   z-index: 9; }
   .sidebar .nav > li > a {
-    padding: 18px 30px;
+    padding: 10px 30px;
     color: #AEB7C2;
     border-left: 5px solid transparent; }
     .sidebar .nav > li > a:hover, .sidebar .nav > li > a:focus, .sidebar .nav > li > a.active {
@@ -368,9 +403,9 @@ ul.notifications > li {
       background-color: transparent; }
       .sidebar .nav > li > a:hover i, .sidebar .nav > li > a:focus i, .sidebar .nav > li > a.active i {
         color: #00AAFF; }
-    .sidebar .nav > li > a:focus, .sidebar .nav > li > a.active {
-      background-color: #252c35;
-      border-left-color: #00AAFF; }
+    /*.sidebar .nav > li > a:focus, .sidebar .nav > li > a.active {*/
+    /*  background-color: #252c35;*/
+    /*  border-left-color: #00AAFF; }*/
     .sidebar .nav > li > a[data-toggle="collapse"] .icon-submenu {
       display: inline-block;
       vertical-align: middle;
@@ -668,6 +703,7 @@ fieldset[disabled] .btn {
     border-bottom: none; }
     .panel.panel-headline .panel-heading .panel-title {
       margin-bottom: 8px;
+      
       font-size: 22px;
       font-weight: normal; }
     .panel.panel-headline .panel-heading .panel-subtitle {
@@ -929,6 +965,13 @@ ul.activity-list > li {
 
 .custom-tabs-line.right-aligned {
   text-align: right; }
+@media screen and (min-width: 455px) {
+    .res{
+         display: flex;
+         flex-wrap: wrap;
+        
+    }
+    
 
 @media screen and (max-width: 768px) {
   .custom-tabs-line ul li.active > a {

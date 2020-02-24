@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+
+use Session;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -36,4 +40,17 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    
+    protected function authenticated(Request $request, $user)
+{
+    if ($user && $user->isBanned() == true)
+    {
+        auth()->guard()->logout();
+        
+        Session::flash('message', 'Sorry, your account is suspended! Please contact customer support for more help.'); 
+        Session::flash('alert-class', 'alert-danger');
+        
+        return redirect()->back();
+    }
+} 
 }

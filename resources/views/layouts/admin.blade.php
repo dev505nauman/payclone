@@ -1,32 +1,126 @@
 
 <!doctype html>
 <html lang="en">
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
   <title>@yield('pagename')</title>
-  <meta charset="utf-8">
+ <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
   <!-- VENDOR CSS -->
-  <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="assets/vendor/linearicons/style.css">
-      <link rel="stylesheet" href="assets/vendor/chartist/css/chartist-custom.css">
+  <link rel="stylesheet" href="{{asset('assets/vendor/linearicons/style.css')}}">
+      <link rel="stylesheet" href="{{asset('assets/vendor/chartist/css/chartist-custom.css')}}">
+      <!--<link href="{{url('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css')}}" rel="stylesheet">-->
   
   <!-- MAIN CSS -->
-  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="{{asset('style.css')}}">
 
-  <link rel="stylesheet" href="css/custom-style.css">
+  <link rel="stylesheet" href="{{asset('css/custom-style.css')}}">
 
 
   <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 
   <!-- ICONS -->
-  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/img/apple-icon.png')}}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{asset('assets/img/favicon.png')}}">
+  
+  <!-- DATA TABLES-->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+   
+   <!-- GRAPHS-->
+ <link rel="stylesheet" type="text/css" href="https://www.highcharts.com/media/com_demo/css/highslide.css" />
+
+<style>
+    .submit-button {
+  margin-top: 10px;
+}
+.cardTab{
+    padding: 0px;
+}
+
+.cardUlTab{
+    padding:0px;
+
+}
+.cardUlTab.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #00aaff !important;
+    cursor: default;
+     background-color: #f5f5fa !important; 
+     border: none; 
+     border-bottom-color: none;}
+.cardUlTab.nav-tabs>li>a {
+    margin-right: 0px;
+    line-height: 1.42857143;
+    border:none;
+    border-radius: 0px 0px 0 0;
+    color:white;
+}
+.cardUlTab.nav-tabs>li {
+    float: left;
+    margin-bottom: 0px;
+}
+.process-modal {
+  display: flex;
+    height: 100%;
+    align-items: center;
+    margin-bottom: 0px;  
+    margin-top: 0px;
+}
+.bars{
+    padding: 15px;
+}
+.panelt{
+    width: 310px;
+    position: absolute;
+    right: 12px;
+    margin-top:50px;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 7px;
+    font-weight: 700;
+}
+li{
+        padding: 0px;
+        cursor:pointer;
+}
+price{
+    color:green;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+ 
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 320px;
+  height:100px;
+  background-color: gray;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+ 
+  position: absolute;
+  z-index: 1;
+  right:100%
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+</style>
 
 </head>
 <body>
@@ -36,20 +130,20 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="brand">
-        <a href="index.html"><img src="assets/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+        <a href="https://www.dev505.com" target="_blank"><img src="{{asset('assets/img/fluxpay-logo.png')}}" alt="Klorofil Logo" class="img-responsive logo" style="width:120px;height:36px;"></a>
       </div>
       <div class="container-fluid">
         <div class="navbar-btn">
           <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+          
         </div>
-        <form class="navbar-form navbar-left">
-          <div class="input-group">
-            <input type="text" value="" class="form-control" placeholder="Search dashboard...">
-            <span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
-          </div>
-        </form>
         <div id="navbar-menu">
           <ul class="nav navbar-nav navbar-right">
+            <li class="drdopdown">
+                <a href="#" class="dropdown-toggle">
+                <i class="fa fa-search"></i>
+              </a>
+            </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                 <i class="lnr lnr-alarm"></i>
@@ -65,7 +159,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i><!--<i class="icon-submenu lnr lnr-chevron-down"></i>--></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Basic Use</a></li>
                 <li><a href="#">Working With Data</a></li>
@@ -74,11 +168,11 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span>{{Auth::user()->name}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{asset('assets/img/user.png')}}" class="img-circle" alt="Avatar"><!--<i class="icon-submenu lnr lnr-chevron-down"></i>--></a>
               <ul class="dropdown-menu">
                 <li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
                 <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-                <li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
+                <li><a href="{{ route('settings') }}"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
                 <li><a href="{{ url('/logout') }}"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
               </ul>
             </li>
@@ -98,25 +192,81 @@
           
   <ul class="nav">
           <li><a href="{{ route('home') }}" class="{{ (request()->is('home')) ? 'active' : '' }}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+          
+          
+          @if(Auth::user()->role_id==1)
+        <!--<li><a href="{{ route('charge') }}" class="#"><i class="lnr lnr-dice"></i> <span>Charge</span></a></li>-->
+        <li><a href="{{ route('charge') }}" class="#"><i class="lnr lnr-dice"></i> <span>Terminal</span></a></li>
+        <li><a href="{{ route('transactions') }}" class="#"><i class="lnr lnr-book"></i> <span>Transactions</span></a></li>
+        <li><a href="{{ route('payfac') }}" class="#"><i class="lnr lnr-briefcase"></i> <span>PayFac</span></a></li>
+        <li><a href="{{ route('merchants') }}" class="{{ (request()->is('merchants')) ? 'active' : '' }}"><i class="lnr lnr-user"></i> <span>Merchants</span></a></li>
+        <!--<li><a href="{{ url('terminal') }}" class="#" ><i class="fa fa-window-maximize "></i> <span>Terminal</span></a></li>-->
+        <li><a href="{{ route('customers') }}" class="{{ (request()->is('customers')) ? 'active' : '' }}"><i class="lnr lnr-users"></i> <span>Customers</span></a></li>
+        <li><a href="{{ route('customer-contacts') }}" class="{{ (request()->is('customer-contacts')) ? 'active' : '' }}"><i class="lnr lnr-license"></i> <span>Contacts</span></a></li>
+        <li><a href="{{ route('Wallets') }}" class="#"><i class="lnr lnr-gift"></i> <span>Wallets</span></a></li>
+        <li><a href="{{ route('fundings') }}" class="#"><i class="lnr lnr-gift"></i> <span>Funding</span></a></li>
+        <li><a id="toggleBtn"><i class="fa fa-bar-chart"></i> <span>Reporting</span><i style="margin-left:10px" class="fa fa-angle-down"></i></a>
+            <ul style="list-style-type:none;margin-left:10px;" id="toggleId" hidden>
+                <li><a href="{{ route('reportings') }}" class=""><i class="fa fa-bar-chart"></i> <span>Reporting</span></a></li>
+                <li><a href="{{ route('batch') }}" class=""><i class="fa fa-bar-chart"></i> <span>Batches</span></a></li>
+            </ul>
+        </li>
+        <li><a href="#" class="#"><i class="lnr lnr-store"></i> <span>Store</span></a></li>
+        <li><a href="#" class="#"><i class="fa fa-usd"></i> <span>Quotes</span></a></li>
+        <li><a href="#" class="#"><i class="fa fa-credit-card"></i> <span>Invoices</span></a></li>
+        <li><a href="#" class="#"><i class="fa fa-envelope-open-o"></i> <span>Subscriptions</span></a></li>
+        <li><a href="#" class="#"><i class="fa fa-shopping-bag"></i> <span>Products</span></a></li>
+        <li><a href="#" class="#"><i class="lnr lnr-pie-chart"></i> <span>Analytics</span></a></li>
+        <li><a href="#" class="#"><i class="fa fa-random"></i> <span>Integrations</span></a></li>
+        
 
-              <li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Process</span></a></li>
 
-              <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Search</span></a></li>
 
-              <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Recurring</span></a></li>
 
-              <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>History</span></a></li>
+<!--        <li><a href="{{ route('ticket-management') }}" class="{{ (request()->is('ticket-management')) ? 'active' : '' }}"><i class="lnr lnr-bubble"></i> <span>Support</span></a></li>
+-->
+          @elseif(Auth::user()->role_id==2)
+           <li><a href="#" class="#"><i class="fa fa-window-maximize "></i> <span>Terminal</span></a></li>
+        <li><a href="{{ route('customers') }}" class="{{ (request()->is('customers')) ? 'active' : '' }}"><i class="lnr lnr-users"></i> <span>Customers</span></a></li>
+        <li><a href="#" class="#"><i class="lnr lnr-gift"></i> <span>Rewards</span></a></li>
+        <li><a href="#" class="#"><i class="fa fa-bar-chart"></i> <span>Reporting</span></a></li>
+        <li><a href="#" class="#"><i class="lnr lnr-store"></i> <span>Store</span></a></li>
+        <li><a href="#" class="#"><i class="fa fa-random"></i> <span>Integrations</span></a></li>
+          
+          @elseif(Auth::user()->role_id==3)
 
-              <li><a href="{{ route('customers') }}" class="{{ (request()->is('customers')) ? 'active' : '' }}"><i class="lnr lnr-alarm"></i> <span>Customers</span></a></li>
+        <li><a href="{{ route('merchants') }}" class="{{ (request()->is('merchants')) ? 'active' : '' }}"><i class="lnr lnr-users"></i> <span>Merchants</span></a></li>
+        <li><a href="#" class="#"><i class="fa fa-window-maximize "></i> <span>Terminal</span></a></li>
+        <li><a href="{{ route('customers') }}" class="{{ (request()->is('customers')) ? 'active' : '' }}"><i class="lnr lnr-users"></i> <span>Customers</span></a></li>
+        <li><a href="#" class="#"><i class="lnr lnr-gift"></i> <span>Rewards</span></a></li>
+        <li><a href="#" class="#"><i class="fa fa-bar-chart"></i> <span>Reporting</span></a></li>
+        <li><a href="#" class="#"><i class="lnr lnr-store"></i> <span>Store</span></a></li>
+        <li><a href="#" class="#"><i class="fa fa-random"></i> <span>Integrations</span></a></li>
+        
+        @elseif(Auth::user()->role_id==4)
+        
 
-              <li><a href="{{ route('payment-gateways') }}" class="{{ (request()->is('payment-gateways')) ? 'active' : '' }}"><i class="lnr lnr-alarm"></i> <span>Payment Gateways</span></a></li>
+        
+        <li><a href="{{ route('terminal') }}" class="{{ (request()->is('reportings')) ? 'active' : '' }}"><i class="fa fa-window-maximize "></i> <span>Terminal</span></a></li>
+        <li><a href="{{ route('customers') }}" class="{{ (request()->is('customers')) ? 'active' : '' }}"><i class="lnr lnr-users"></i> <span>Customers</span></a></li>
+        <li><a href="#" class="#"><i class="lnr lnr-gift"></i> <span>Rewards</span></a></li>
+        <li><a href="{{ route('customer-contacts') }}" class="{{ (request()->is('customer-contacts')) ? 'active' : '' }}"><i class="lnr lnr-license"></i> <span>Contacts</span></a></li>
+        <li><a id="toggleBtn"><i class="fa fa-bar-chart"></i> <span>Reporting</span><i style="margin-left:10px" class="fa fa-angle-down"></i></a>
+            <ul style="list-style-type:none;margin-left:10px;" id="toggleId" hidden>
+                <li><a href="{{ route('reportings') }}" class=""><i class="fa fa-bar-chart"></i> <span>Reporting</span></a></li>
+                <li><a href="{{ route('batch') }}" class=""><i class="fa fa-bar-chart"></i> <span>Batches</span></a></li>
+            </ul>
+        </li>
+        <li><a href="#" class="#"><i class="lnr lnr-store"></i> <span>Store</span></a></li>
+        <li><a href="#" class="#"><i class="fa fa-random"></i> <span>Integrations</span></a></li>
 
-              <li><a href="{{ route('settings') }}" class="{{ (request()->is('settings')) ? 'active' : '' }}"><i class="lnr lnr-alarm"></i> <span>Settings</span></a></li>
+              
 
-              <li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Support</span></a></li>
+        @endif
+              
+              <li><a href="{{ route('settings') }}" class="{{ (request()->is('settings')) ? 'active' : '' }}"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
 
-              <li><a href="{{ url('/logout') }}" class=""><i class="lnr lnr-exit"></i> <span>Logout</span></a></li> 
-    
+
   </ul>       </nav>
       </div>
     </div>
@@ -127,10 +277,12 @@
 
       <!-- MAIN CONTENT -->
       <div class="main-content">
-        <div class="container-fluid">
+        <div class="container-fluid" id="ajax-extension">
+
           <!-- OVERVIEW -->
           @if(Session::has('message'))
-            <p class="alert {{ Session::get('alert-class', 'alert-info') }} sessionmsg">{{ Session::get('message') }}</p>  
+            <p id="message" class="alert {{ Session::get('alert-class', 'alert-info') }} sessionmsg">{{ Session::get('message') }}</p>
+            @else <p id="message"></p>
           @endif
           @yield('content')
         </div>
@@ -142,21 +294,24 @@
     <div class="clearfix"></div>
     <footer>
       <div class="container-fluid">
-        <p class="copyright">&copy; 2017 <a href="https://www.dev505.com" target="_blank">Powered By Dev505</p>
+        <p class="copyright"><a href="{{ route('support-system') }}"><span>Support</span></a> | &copy; 2017 <a href="https://www.dev505.com" target="_blank">Powered By Dev505</p>
+        
       </div>
     </footer>
   </div>
   <!-- END WRAPPER -->
 
   <!-- Javascript -->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script src="assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-  <script src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-  <script src="assets/vendor/chartist/js/chartist.min.js"></script>
-  <script src="assets/scripts/klorofil-common.js"></script>
-  <script src="js/card.js"></script>
-
+  <script src="{{asset('assets/vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+  <script src="{{asset('assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+  <script src="{{asset('assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js')}}"></script>
+  <script src="{{asset('assets/vendor/chartist/js/chartist.min.js')}}"></script>
+  <script src="{{asset('assets/scripts/klorofil-common.js')}}"></script>
+  <script src="{{asset('js/bootbox.all.min.js')}}"></script>
+  <script src="{{asset('js/card.js')}}"></script>
+  <script src="{{asset('https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')}}"></script>
+  
 <script>
   $(function() {
     var data, options;
@@ -276,9 +431,21 @@
 
   });
    $(document).ready(function(){
-    $('.alert').fadeIn().delay(1500).fadeOut();
+    $('.sessionmsg').fadeIn().delay(1500).fadeOut();
+    
+    
+//     window.setInterval(function(){
+//  alert("hello");
+// }, 5000)
+    
+    
       });
+      
+    $('#toggleBtn').click(function(){
+        $('#toggleId').toggle();
+    })
 </script>
+
 @yield('scripts')
 
 </body>
